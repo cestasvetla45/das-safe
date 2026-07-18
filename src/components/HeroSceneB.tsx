@@ -32,12 +32,12 @@ export function HeroSceneB({ progress }: HeroSceneBProps) {
     const tick = () => {
       const p = progress.current ?? 0
       if (zoomRef.current) {
-        const scale = 1 + p * 0.35
+        const scale = 1 + p * 0.18
         const y = p * -8
         zoomRef.current.style.transform = `translateY(${y}%) scale(${scale})`
       }
       if (dimRef.current) {
-        dimRef.current.style.opacity = String(clamp01((p - 0.55) / 0.45) * 0.9)
+        dimRef.current.style.opacity = String(clamp01((p - 0.5) / 0.5) * 0.9)
       }
       raf = requestAnimationFrame(tick)
     }

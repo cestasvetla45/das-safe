@@ -1,21 +1,43 @@
 @import "tailwindcss";
 
+:root {
+  --font-display: "Space Grotesk", "Inter Tight", sans-serif;
+  --font-body: "Inter Tight", "Inter", system-ui, -apple-system, sans-serif;
+}
+
 html,
 body {
   margin: 0;
   background: #000;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 html {
-  scroll-behavior: smooth;
   scrollbar-width: thin;
   scrollbar-color: #222 #000;
 }
 
+/* Lenis drives smooth scrolling in JS; native smooth-scroll would fight it.
+   Falls back to CSS smooth-scroll only when Lenis is skipped (reduced motion). */
+html.lenis {
+  scroll-behavior: auto;
+}
+
 body {
-  font-family: "Inter Tight", "Inter", system-ui, -apple-system, sans-serif;
+  font-family: var(--font-body);
   color: #fff;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
 }
 
 ::selection {
@@ -85,4 +107,10 @@ body {
   .hero-b-drift {
     animation: none;
   }
+}
+
+/* Marquee: outlined, transparent-fill text for the divider strip */
+.text-stroke {
+  color: transparent;
+  -webkit-text-stroke: 1px rgb(64, 64, 64);
 }

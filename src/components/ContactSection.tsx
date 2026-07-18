@@ -15,30 +15,42 @@ export function ContactSection() {
   const ref = useScrollReveal<HTMLElement>()
 
   return (
-    <section id="kontakt" ref={ref} className="bg-[#0a0a0a] py-32 px-6">
-      <h2
-        data-reveal
-        className="text-center text-sm tracking-[0.3em] uppercase text-neutral-500"
-      >
-        Kontakt
-      </h2>
+    <section id="kontakt" ref={ref} className="bg-[#0a0a0a] px-6 py-16 sm:py-24">
+      <div className="mx-auto grid max-w-5xl grid-cols-1 gap-12 md:grid-cols-2 md:items-center">
+        <div>
+          <h2
+            data-reveal
+            className="font-display text-sm tracking-[0.3em] uppercase text-neutral-500"
+          >
+            Kontakt
+          </h2>
 
-      <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-10 sm:grid-cols-2">
-        {DETAILS.map((detail) => (
-          <div key={detail.label} data-reveal>
-            <p className="text-xs uppercase tracking-wider text-neutral-600">{detail.label}</p>
-            <p className="mt-2 text-base text-white">{detail.value}</p>
+          <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2">
+            {DETAILS.map((detail) => (
+              <div key={detail.label} data-reveal>
+                <p className="text-xs uppercase tracking-wider text-neutral-600">
+                  {detail.label}
+                </p>
+                <p className="mt-2 text-base text-white">{detail.value}</p>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </div>
 
-      <div data-reveal className="mt-16 flex justify-center">
-        <a
-          href="mailto:info@dassafe.com"
-          className="rounded-full border border-neutral-700 px-8 py-3 font-light tracking-wide text-white transition hover:bg-white hover:text-black"
+        <div
+          data-reveal
+          className="flex flex-col items-start gap-6 border-t border-neutral-900 pt-10 md:items-end md:border-t-0 md:border-l md:pl-12 md:pt-0"
         >
-          Termin vereinbaren
-        </a>
+          <p className="max-w-xs text-base text-neutral-300 md:text-right">
+            Vereinbaren Sie einen persönlichen Termin — diskret, unverbindlich, in aller Ruhe.
+          </p>
+          <a
+            href="mailto:info@dassafe.com"
+            className="font-display rounded-full border border-neutral-700 px-8 py-3 font-light tracking-wide text-white transition hover:bg-white hover:text-black"
+          >
+            Termin vereinbaren
+          </a>
+        </div>
       </div>
     </section>
   )

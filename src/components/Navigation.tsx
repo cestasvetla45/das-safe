@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const LINKS = [
   { label: 'Schließfach', href: '#leistungen' },
@@ -11,10 +11,23 @@ const LINKS = [
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [hidden, setHidden] = useState(false)
+  const lastY = useRef(0)
 
   useEffect(() => {
+    lastY.current = window.scrollY
+    const heroEnd = () => window.innerHeight * 1.1
     const onScroll = () => {
-      setScrolled(window.scrollY > window.innerHeight * 2.0)
+      const y = window.scrollY
+      setScrolled(y > window.innerHeight * 2.0)
+
+      const delta = y - lastY.current
+      if (y > heroEnd() && delta > 4) {
+        setHidden(true)
+      } else if (delta < -4 || y <= heroEnd()) {
+        setHidden(false)
+      }
+      lastY.current = y
     }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
@@ -25,14 +38,12 @@ export function Navigation() {
     <>
       <header
         className={[
-          'fixed inset-x-0 top-0 z-20 flex w-full items-center justify-between px-6 py-5 transition-colors duration-300 sm:px-10',
+          'fixed inset-x-0 top-0 z-20 flex w-full items-center justify-between px-6 py-5 transition-[transform,background-color,border-color] duration-300 sm:px-10',
           scrolled ? 'bg-black/80 border-b border-neutral-900 backdrop-blur' : 'bg-transparent',
+          hidden && !menuOpen ? '-translate-y-full' : 'translate-y-0',
         ].join(' ')}
       >
-        <a
-          href="#"
-          className="font-extralight tracking-[0.15em] text-white text-lg"
-        >
+        <a href="#" className="font-display font-extralight tracking-[0.15em] text-white text-lg">
           Das Safe
         </a>
 
@@ -41,7 +52,7 @@ export function Navigation() {
             <a
               key={link.label}
               href={link.href}
-              className="text-xs tracking-[0.15em] uppercase text-neutral-400 transition hover:text-white"
+              className="font-display text-xs tracking-[0.15em] uppercase text-neutral-400 transition hover:text-white"
             >
               {link.label}
             </a>
@@ -75,7 +86,7 @@ export function Navigation() {
               key={link.label}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="text-2xl font-extralight tracking-[0.1em] text-neutral-300 transition hover:text-white"
+              className="font-display text-2xl font-extralight tracking-[0.1em] text-neutral-300 transition hover:text-white"
             >
               {link.label}
             </a>

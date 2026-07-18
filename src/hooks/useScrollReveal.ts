@@ -15,14 +15,14 @@ export function useScrollReveal<T extends HTMLElement>(options?: { stagger?: num
       const targets = el.querySelectorAll('[data-reveal]')
       gsap.fromTo(
         targets,
-        { opacity: 0, y: 20 },
+        { opacity: 0, y: 30 },
         {
           opacity: 1,
           y: 0,
           duration: 0.9,
           ease: 'power2.out',
           stagger: options?.stagger ?? 0.12,
-          scrollTrigger: { trigger: el, start: 'top 75%', toggleActions: 'play none none none' },
+          scrollTrigger: { trigger: el, start: 'top 80%', toggleActions: 'play none none none' },
         },
       )
     },

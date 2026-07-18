@@ -11,16 +11,16 @@ export function WelcomeSection() {
     >
       <h2
         data-reveal
-        className="font-extralight text-4xl sm:text-6xl text-white tracking-tight"
+        className="font-display font-extralight text-4xl sm:text-6xl text-white tracking-tight"
       >
         Willkommen im Wiener Traditionshaus
       </h2>
-      <p data-reveal className="mt-4 text-neutral-400">
+      <p data-reveal className="font-display mt-4 text-neutral-400">
         DAS SAFE in 1080 Wien
       </p>
       <p
         data-reveal
-        className="mt-10 max-w-2xl mx-auto text-neutral-300 text-base leading-relaxed"
+        className="mt-8 max-w-2xl mx-auto text-neutral-300 text-base leading-relaxed"
       >
         Wir freuen uns über Ihr Interesse an unserem Wertfachvermietungs-Unternehmen im 8. Wiener
         Bezirk/Josefstadt und stellen Ihnen gerne unsere Leistungen rund um die sichere Verwahrung

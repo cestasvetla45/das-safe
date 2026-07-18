@@ -1,16 +1,74 @@
-import { Fragment } from 'react'
-import { useScrollReveal } from '../hooks/useScrollReveal'
+import { Fragment, useRef } from 'react'
+import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(useGSAP, ScrollTrigger)
 
 const STATEMENT = 'Unser Ziel: Ihr Recht auf Diskretion und Privatsphäre!'
 
 export function StatementSection() {
-  const ref = useScrollReveal<HTMLElement>({ stagger: 0.04 })
+  const sectionRef = useRef<HTMLElement>(null)
   const words = STATEMENT.split(' ')
+
+  useGSAP(
+    () => {
+      const el = sectionRef.current
+      if (!el) return
+      const targets = el.querySelectorAll('[data-reveal]')
+      const line = el.querySelector('[data-line]')
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+      if (reduceMotion) {
+        gsap.fromTo(
+          targets,
+          { opacity: 0.15 },
+          {
+            opacity: 1,
+            duration: 0.6,
+            stagger: 0.04,
+            scrollTrigger: { trigger: el, start: 'top 70%', toggleActions: 'play none none none' },
+          },
+        )
+        gsap.fromTo(
+          line,
+          { opacity: 0, scaleX: 0 },
+          {
+            opacity: 1,
+            scaleX: 1,
+            duration: 0.6,
+            scrollTrigger: { trigger: el, start: 'top 70%', toggleActions: 'play none none none' },
+          },
+        )
+        return
+      }
+
+      gsap.set(targets, { opacity: 0.15 })
+      gsap.set(line, { opacity: 0, scaleX: 0 })
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: el,
+          start: 'top top',
+          end: '+=60%',
+          pin: true,
+          scrub: 0.5,
+        },
+      })
+
+      tl.to(targets, { opacity: 1, stagger: 0.5, ease: 'none' }).to(
+        line,
+        { opacity: 1, scaleX: 1, duration: 0.5, ease: 'none' },
+        '-=0.3',
+      )
+    },
+    { scope: sectionRef },
+  )
 
   return (
     <section
-      ref={ref}
-      className="flex min-h-screen flex-col items-center justify-center bg-[#050505] px-6"
+      ref={sectionRef}
+      className="flex min-h-screen flex-col items-center justify-center bg-black px-6"
     >
       <h2 className="max-w-4xl text-center font-extralight text-3xl sm:text-5xl text-white tracking-tight leading-tight">
         {words.map((word, i) => (
@@ -24,7 +82,7 @@ export function StatementSection() {
           </Fragment>
         ))}
       </h2>
-      <div data-reveal className="mt-8 h-px w-[60px] bg-[#da3020]" />
+      <div data-line className="mt-8 h-px w-[60px] bg-[#da3020]" />
     </section>
   )
 }

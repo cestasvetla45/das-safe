@@ -22,10 +22,10 @@ export function ServicesSection() {
   const ref = useScrollReveal<HTMLElement>({ stagger: 0.15 })
 
   return (
-    <section id="leistungen" ref={ref} className="bg-black py-32 px-6">
+    <section id="leistungen" ref={ref} className="bg-black py-16 px-6 sm:py-24">
       <h2
         data-reveal
-        className="text-center text-3xl font-extralight text-white"
+        className="font-display text-center text-3xl font-extralight text-white"
       >
         Diskret &amp; transparent
       </h2>
@@ -33,15 +33,15 @@ export function ServicesSection() {
         Wir bieten Ihnen:
       </p>
 
-      <div className="mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-3">
+      <div className="mx-auto mt-12 grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-3">
         {SERVICES.map((service) => (
           <div
             key={service.number}
             data-reveal
             className="rounded-lg border border-[#222] bg-[#111] p-8 transition hover:border-[#da3020]"
           >
-            <span className="text-sm text-neutral-600">{service.number}</span>
-            <h3 className="mt-4 text-xl font-light text-white">{service.title}</h3>
+            <span className="font-display text-sm text-neutral-600">{service.number}</span>
+            <h3 className="font-display mt-4 text-xl font-light text-white">{service.title}</h3>
             <p className="mt-3 text-sm leading-relaxed text-neutral-400">{service.text}</p>
           </div>
         ))}

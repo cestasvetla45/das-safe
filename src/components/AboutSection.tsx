@@ -24,7 +24,7 @@ export function AboutSection() {
             x: 0,
             duration: 0.9,
             ease: 'power2.out',
-            scrollTrigger: { trigger: el, start: 'top 70%', toggleActions: 'play none none none' },
+            scrollTrigger: { trigger: el, start: 'top 80%', toggleActions: 'play none none none' },
           },
         )
       }
@@ -37,7 +37,7 @@ export function AboutSection() {
             x: 0,
             duration: 0.9,
             ease: 'power2.out',
-            scrollTrigger: { trigger: el, start: 'top 70%', toggleActions: 'play none none none' },
+            scrollTrigger: { trigger: el, start: 'top 80%', toggleActions: 'play none none none' },
           },
         )
       }
@@ -46,10 +46,10 @@ export function AboutSection() {
   )
 
   return (
-    <section id="ueber-uns" ref={sectionRef} className="bg-black py-32 px-6">
+    <section id="ueber-uns" ref={sectionRef} className="bg-black py-16 px-6 sm:py-24">
       <div className="mx-auto grid max-w-5xl grid-cols-1 gap-16 md:grid-cols-2">
         <div data-reveal-left>
-          <span className="text-sm tracking-[0.3em] uppercase text-neutral-500">Über uns</span>
+          <span className="font-display text-sm tracking-[0.3em] uppercase text-neutral-500">Über uns</span>
           <p className="mt-6 max-w-lg text-base leading-relaxed text-neutral-300">
             Das Safe ist ein sehr traditioneller, konservativer familiär geführter Betrieb mit
             Fokus auf Sicherheit rund um Wertgegenstände, Daten oder Verhandlungen. Seit 1984
