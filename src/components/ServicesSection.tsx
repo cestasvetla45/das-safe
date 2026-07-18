@@ -72,23 +72,22 @@ export function ServicesSection() {
           <div
             key={service.number}
             data-reveal
-            className="group relative overflow-hidden rounded-lg"
-            style={{ height: 'clamp(420px, 56vh, 560px)' }}
+            className="service-card group relative overflow-hidden rounded-lg"
           >
             <img
               src={service.image}
               alt={service.alt}
               loading="lazy"
-              className="absolute inset-0 h-full w-full scale-100 object-cover grayscale-[45%] transition-all duration-[900ms] ease-out group-hover:scale-[1.06] group-hover:grayscale-0"
+              className="service-card-img absolute inset-0 h-full w-full scale-100 object-cover grayscale-[45%] transition-all duration-[900ms] ease-out group-hover:scale-[1.06] group-hover:grayscale-0"
             />
             <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.85)_0%,transparent_45%)]" />
             <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
               <span className="font-display text-sm text-neutral-500">{service.number}</span>
-              <div className="mt-3 h-[2px] w-0 bg-[#da3020] transition-all duration-500 ease-out group-hover:w-8" />
+              <div className="service-card-line mt-3 h-[2px] w-0 bg-[#da3020] transition-all duration-500 ease-out group-hover:w-8" />
               <h3 className="font-display mt-3 text-2xl font-light text-white sm:text-3xl">
                 {service.title}
               </h3>
-              <p className="mt-3 max-w-[36ch] text-sm leading-relaxed text-neutral-300">
+              <p className="mt-3 line-clamp-3 max-w-[36ch] text-sm leading-relaxed text-neutral-300">
                 {service.text}
               </p>
             </div>

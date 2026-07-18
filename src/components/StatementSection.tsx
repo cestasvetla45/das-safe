@@ -67,7 +67,7 @@ export function StatementSection() {
   return (
     <section
       ref={sectionRef}
-      className="flex flex-col items-center justify-center bg-black px-6 py-24 sm:py-32"
+      className="flex flex-col items-center justify-center bg-black px-6 py-16 sm:py-32"
     >
       <h2 className="max-w-4xl text-center font-extralight text-3xl sm:text-5xl text-white tracking-tight leading-tight">
         {words.map((word, i) => (

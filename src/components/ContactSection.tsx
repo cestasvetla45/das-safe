@@ -46,7 +46,7 @@ export function ContactSection() {
                   )}
                   <span
                     aria-hidden="true"
-                    className="text-[#da3020] opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100"
+                    className="contact-arrow text-[#da3020] opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100"
                   >
                     →
                   </span>

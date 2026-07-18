@@ -9,12 +9,15 @@ interface MarqueeProps {
   reverse?: boolean
   /** Tailwind font-size classes for the strip, e.g. "text-2xl sm:text-[3rem]". */
   size?: string
+  /** Tailwind vertical padding classes, scaled to match `size`. */
+  padding?: string
 }
 
 export function Marquee({
   text,
   reverse = false,
   size = 'text-[2.5rem] sm:text-[5rem]',
+  padding = 'py-6 sm:py-8',
 }: MarqueeProps) {
   const trackRef = useRef<HTMLDivElement>(null)
 
@@ -38,7 +41,7 @@ export function Marquee({
   })
 
   return (
-    <div className="overflow-hidden border-y border-neutral-900 bg-black py-6 sm:py-8">
+    <div className={`overflow-hidden border-y border-neutral-900 bg-black ${padding}`}>
       <div ref={trackRef} className="flex w-max whitespace-nowrap will-change-transform">
         {[0, 1].map((i) => (
           <span

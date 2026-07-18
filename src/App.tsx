@@ -65,7 +65,8 @@ export default function App() {
         <Marquee
           text="SCHLIESSFACH · DATA STORAGE · BÜRODIENSTE · "
           reverse
-          size="text-2xl sm:text-[3rem]"
+          size="text-[1.75rem] sm:text-[3rem]"
+          padding="py-4 sm:py-6"
         />
         <ServicesSection />
         <StatementSection />

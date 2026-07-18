@@ -120,3 +120,51 @@ h3 {
   color: transparent;
   -webkit-text-stroke: 1px rgba(115, 115, 115, 0.35);
 }
+
+/* Reduce OutlineWord presence on small screens by fading the stroke itself —
+   GSAP drives the entrance/parallax via inline `opacity`/`transform`, so a
+   Tailwind opacity utility on the same element would be clobbered. */
+@media (max-width: 639px) {
+  .outline-word {
+    -webkit-text-stroke-color: rgba(115, 115, 115, 0.22);
+  }
+}
+
+/* Hero video/poster: cover in landscape, contain in portrait so the emblem's
+   sides aren't cropped. The source is pure black, so letterboxing is invisible. */
+.hero-video {
+  object-fit: cover;
+}
+
+@media (orientation: portrait) {
+  .hero-video {
+    object-fit: contain;
+  }
+}
+
+/* Services card height: shorter on mobile, full clamp from md up */
+.service-card {
+  height: clamp(340px, 52vh, 480px);
+}
+
+@media (min-width: 768px) {
+  .service-card {
+    height: clamp(420px, 56vh, 560px);
+  }
+}
+
+/* Touch devices: hover is unreliable/sticky, so never leave elements in the
+   "hovered" degraded state — always show the resolved, non-hover appearance. */
+@media (hover: none) {
+  .service-card-img {
+    filter: none;
+  }
+
+  .service-card-line {
+    display: none;
+  }
+
+  .contact-arrow {
+    display: none;
+  }
+}

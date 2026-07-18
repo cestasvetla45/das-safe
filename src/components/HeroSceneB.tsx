@@ -53,7 +53,7 @@ export function HeroSceneB({ progress }: HeroSceneBProps) {
             src="/hero-poster.webp"
             alt=""
             draggable={false}
-            className="hero-b-drift h-full w-full object-cover"
+            className="hero-b-drift hero-video h-full w-full"
           />
         ) : (
           <video
@@ -66,7 +66,7 @@ export function HeroSceneB({ progress }: HeroSceneBProps) {
             preload="auto"
             disablePictureInPicture
             onError={() => setUseFallback(true)}
-            className="h-full w-full object-cover"
+            className="hero-video h-full w-full"
           />
         )}
       </div>

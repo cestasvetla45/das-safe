@@ -92,19 +92,18 @@ export function StatsSection() {
   return (
     <section
       ref={sectionRef}
-      className="border-y border-neutral-900 bg-black px-6 py-16 sm:py-20"
+      className="border-y border-neutral-900 bg-black px-6 py-10 sm:py-16"
     >
-      <div className="mx-auto grid max-w-5xl grid-cols-2 gap-10 sm:grid-cols-4">
+      <div className="mx-auto grid max-w-5xl grid-cols-2 gap-6 sm:gap-10 md:grid-cols-4">
         {STATS.map((stat, i) => (
           <div key={stat.label} data-stat data-index={i} className="text-center">
             <div
               data-numeral
-              className="font-display text-white font-medium leading-none"
-              style={{ fontSize: 'clamp(3rem, 6vw, 5rem)' }}
+              className="font-display text-4xl font-medium leading-none text-white sm:text-6xl"
             >
               {stat.countUp ? '0' : stat.format(0)}
             </div>
-            <p className="font-display mt-3 text-[11px] uppercase tracking-[0.2em] text-neutral-500">
+            <p className="font-display mt-3 text-[10px] uppercase tracking-[0.2em] text-neutral-500">
               {stat.label}
             </p>
           </div>

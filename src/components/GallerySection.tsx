@@ -102,14 +102,14 @@ export function GallerySection() {
   )
 
   return (
-    <section id="einblicke" ref={sectionRef} className="bg-black py-16 px-6 sm:py-24">
+    <section id="einblicke" ref={sectionRef} className="bg-black pt-10 pb-16 px-6 sm:pt-24 sm:pb-24">
       <span className="font-display mb-8 block text-center text-sm tracking-[0.3em] uppercase text-neutral-500 sm:mb-10">
         Einblicke
       </span>
 
       <div className="mx-auto max-w-6xl">
         <div data-reveal className="relative overflow-hidden rounded-lg">
-          <div className="aspect-[21/9] w-full overflow-hidden">
+          <div className="aspect-[4/3] sm:aspect-[16/9] lg:aspect-[21/9] w-full overflow-hidden">
             <div data-parallax className="h-[112%] w-full will-change-transform">
               <img
                 src={PANORAMA.src}
@@ -119,13 +119,18 @@ export function GallerySection() {
               />
             </div>
           </div>
-          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.85)_0%,transparent_45%)]" />
-          <div className="absolute inset-x-0 bottom-0 p-6 sm:p-10">
+          <div className="pointer-events-none absolute inset-0 hidden bg-[linear-gradient(to_top,rgba(0,0,0,0.85)_0%,transparent_45%)] sm:block" />
+          <div className="absolute inset-x-0 bottom-0 hidden p-6 sm:block sm:p-10">
             <span className="text-xs uppercase tracking-[0.3em] text-[#da3020]">{PANORAMA.label}</span>
             <h3 className="font-display mt-2 text-2xl font-light text-white sm:text-4xl">
               {PANORAMA.heading}
             </h3>
           </div>
+        </div>
+
+        <div className="mt-6 sm:hidden">
+          <span className="text-xs uppercase tracking-[0.3em] text-[#da3020]">{PANORAMA.label}</span>
+          <h3 className="font-display mt-2 text-2xl font-light text-white">{PANORAMA.heading}</h3>
         </div>
 
         <div className="mt-16 flex flex-col gap-16 sm:mt-20 sm:gap-24">
