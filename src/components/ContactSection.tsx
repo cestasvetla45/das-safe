@@ -1,14 +1,10 @@
 import { useScrollReveal } from '../hooks/useScrollReveal'
 
 const DETAILS = [
-  { label: 'Adresse', value: 'Auerspergstrasse 1, A-1080 Wien, Austria' },
-  { label: 'Telefon', value: '+43-1-406 61 74' },
-  { label: 'E-Mail', value: 'info@dassafe.com' },
-  {
-    label: 'Öffnungszeiten',
-    value:
-      'Montag – Freitag: 10:00 bis 20:00 Uhr. Samstag, Sonntag und an Feiertagen geschlossen.',
-  },
+  { label: 'Adresse', value: 'Auerspergstrasse 1, 1080 Wien' },
+  { label: 'Telefon', value: '+43-1-406 61 74', href: 'tel:+43140661174' },
+  { label: 'E-Mail', value: 'info@dassafe.com', href: 'mailto:info@dassafe.com' },
+  { label: 'Öffnungszeiten', value: 'Mo–Fr 10:00–20:00' },
 ]
 
 export function ContactSection() {
@@ -25,13 +21,36 @@ export function ContactSection() {
             Kontakt
           </h2>
 
-          <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2">
+          <div className="mt-10">
             {DETAILS.map((detail) => (
-              <div key={detail.label} data-reveal>
-                <p className="text-xs uppercase tracking-wider text-neutral-600">
+              <div
+                key={detail.label}
+                data-reveal
+                className="group grid grid-cols-[120px_1fr] gap-x-4 items-baseline border-t border-neutral-900 py-4 last:border-b sm:grid-cols-[190px_1fr]"
+              >
+                <p className="font-display text-[11px] uppercase tracking-[0.22em] text-neutral-500">
                   {detail.label}
                 </p>
-                <p className="mt-2 text-base text-white">{detail.value}</p>
+                <div className="flex items-center gap-2">
+                  {detail.href ? (
+                    <a
+                      href={detail.href}
+                      className="text-base text-neutral-200 transition-transform duration-300 ease-out group-hover:translate-x-1"
+                    >
+                      {detail.value}
+                    </a>
+                  ) : (
+                    <span className="text-base text-neutral-200 transition-transform duration-300 ease-out group-hover:translate-x-1">
+                      {detail.value}
+                    </span>
+                  )}
+                  <span
+                    aria-hidden="true"
+                    className="text-[#da3020] opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100"
+                  >
+                    →
+                  </span>
+                </div>
               </div>
             ))}
           </div>
@@ -46,7 +65,7 @@ export function ContactSection() {
           </p>
           <a
             href="mailto:info@dassafe.com"
-            className="font-display rounded-full border border-neutral-700 px-8 py-3 font-light tracking-wide text-white transition hover:bg-white hover:text-black"
+            className="font-display rounded-full border border-neutral-700 px-8 py-3 font-light tracking-wide text-white transition-colors duration-300 ease-out hover:border-[#da3020] hover:bg-[#da3020] hover:text-white"
           >
             Termin vereinbaren
           </a>

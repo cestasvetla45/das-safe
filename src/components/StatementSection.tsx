@@ -49,10 +49,9 @@ export function StatementSection() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: el,
-          start: 'top top',
-          end: '+=60%',
-          pin: true,
-          scrub: 0.5,
+          start: 'top 80%',
+          end: 'top 30%',
+          scrub: 0.4,
         },
       })
 
@@ -68,7 +67,7 @@ export function StatementSection() {
   return (
     <section
       ref={sectionRef}
-      className="flex min-h-screen flex-col items-center justify-center bg-black px-6"
+      className="flex flex-col items-center justify-center bg-black px-6 py-24 sm:py-32"
     >
       <h2 className="max-w-4xl text-center font-extralight text-3xl sm:text-5xl text-white tracking-tight leading-tight">
         {words.map((word, i) => (

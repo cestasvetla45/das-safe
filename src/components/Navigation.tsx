@@ -1,12 +1,26 @@
 import { useEffect, useRef, useState } from 'react'
+import type { MouseEvent } from 'react'
+import { lenisRef } from '../lib/lenis'
 
 const LINKS = [
-  { label: 'Schließfach', href: '#leistungen' },
-  { label: 'Data Storage', href: '#leistungen' },
-  { label: 'Bürodienste', href: '#leistungen' },
-  { label: 'Preisliste', href: '#leistungen' },
+  { label: 'Leistungen', href: '#leistungen' },
+  { label: 'Einblicke', href: '#einblicke' },
+  { label: 'Über uns', href: '#ueber-uns' },
   { label: 'Kontakt', href: '#kontakt' },
 ]
+
+function scrollToAnchor(href: string) {
+  const id = href.slice(1)
+  const target = document.getElementById(id)
+  if (!target) return
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  if (!reduceMotion && lenisRef.current) {
+    lenisRef.current.scrollTo(target, { offset: -64, duration: 1.2 })
+  } else {
+    target.scrollIntoView({ behavior: 'smooth' })
+  }
+}
 
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false)
@@ -34,6 +48,17 @@ export function Navigation() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  const handleNavClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
+    event.preventDefault()
+    scrollToAnchor(href)
+  }
+
+  const handleMobileNavClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
+    event.preventDefault()
+    setMenuOpen(false)
+    scrollToAnchor(href)
+  }
+
   return (
     <>
       <header
@@ -52,9 +77,14 @@ export function Navigation() {
             <a
               key={link.label}
               href={link.href}
-              className="font-display text-xs tracking-[0.15em] uppercase text-neutral-400 transition hover:text-white"
+              onClick={(event) => handleNavClick(event, link.href)}
+              className="group relative font-display text-xs tracking-[0.15em] uppercase text-neutral-400 transition hover:text-white"
             >
               {link.label}
+              <span
+                aria-hidden="true"
+                className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-[#da3020] transition-transform duration-300 ease-out group-hover:scale-x-100"
+              />
             </a>
           ))}
         </nav>
@@ -85,7 +115,7 @@ export function Navigation() {
             <a
               key={link.label}
               href={link.href}
-              onClick={() => setMenuOpen(false)}
+              onClick={(event) => handleMobileNavClick(event, link.href)}
               className="font-display text-2xl font-extralight tracking-[0.1em] text-neutral-300 transition hover:text-white"
             >
               {link.label}

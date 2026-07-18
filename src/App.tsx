@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import Lenis from 'lenis'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { lenisRef } from './lib/lenis'
 import { HeroSceneB } from './components/HeroSceneB'
 import { HeroOverlay } from './components/HeroOverlay'
 import { useScrollProgress } from './hooks/useScrollProgress'
@@ -27,6 +28,7 @@ export default function App() {
     if (reduceMotion) return
 
     const lenis = new Lenis({ autoRaf: false })
+    lenisRef.current = lenis
     document.documentElement.classList.add('lenis')
 
     lenis.on('scroll', ScrollTrigger.update)
@@ -39,6 +41,7 @@ export default function App() {
 
     return () => {
       gsap.ticker.remove(onTick)
+      lenisRef.current = null
       lenis.destroy()
       document.documentElement.classList.remove('lenis')
     }
@@ -59,11 +62,16 @@ export default function App() {
       <main className="relative z-[15] bg-black">
         <WelcomeSection />
         <StatsSection />
+        <Marquee
+          text="SCHLIESSFACH · DATA STORAGE · BÜRODIENSTE · "
+          reverse
+          size="text-2xl sm:text-[3rem]"
+        />
         <ServicesSection />
         <StatementSection />
         <GallerySection />
         <AboutSection />
-        <Marquee />
+        <Marquee text="DISKRET · SICHER · PRIVAT · SEIT 1984 · WIEN · " />
         <ContactSection />
         <Footer />
       </main>

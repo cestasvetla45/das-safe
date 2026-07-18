@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { OutlineWord } from './OutlineWord'
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 
@@ -46,8 +47,10 @@ export function AboutSection() {
   )
 
   return (
-    <section id="ueber-uns" ref={sectionRef} className="bg-black py-16 px-6 sm:py-24">
-      <div className="mx-auto grid max-w-5xl grid-cols-1 gap-16 md:grid-cols-2">
+    <section id="ueber-uns" ref={sectionRef} className="relative bg-black py-16 px-6 sm:py-24">
+      <OutlineWord word="WIEN" align="left" />
+
+      <div className="relative z-10 mx-auto grid max-w-5xl grid-cols-1 gap-16 md:grid-cols-2">
         <div data-reveal-left>
           <span className="font-display text-sm tracking-[0.3em] uppercase text-neutral-500">Über uns</span>
           <p className="mt-6 max-w-lg text-base leading-relaxed text-neutral-300">
