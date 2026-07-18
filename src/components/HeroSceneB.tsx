@@ -18,6 +18,9 @@ export function HeroSceneB({ progress }: HeroSceneBProps) {
   const zoomRef = useRef<HTMLDivElement>(null)
   const dimRef = useRef<HTMLDivElement>(null)
   const [useFallback, setUseFallback] = useState(false)
+  const [portrait, setPortrait] = useState(() =>
+    typeof window !== 'undefined' ? window.matchMedia('(orientation: portrait)').matches : false,
+  )
 
   useEffect(() => {
     const mql = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -26,6 +29,18 @@ export function HeroSceneB({ progress }: HeroSceneBProps) {
     mql.addEventListener('change', onChange)
     return () => mql.removeEventListener('change', onChange)
   }, [])
+
+  useEffect(() => {
+    const mql = window.matchMedia('(orientation: portrait)')
+    const onChange = (e: MediaQueryListEvent) => setPortrait(e.matches)
+    mql.addEventListener('change', onChange)
+    return () => mql.removeEventListener('change', onChange)
+  }, [])
+
+  // Portrait gets a dedicated tight crop of the emblem (the 16:9 master is
+  // wider than any phone screen, so full-bleed cover would always cut it off).
+  const videoSrc = portrait ? '/hero-video-portrait.mp4' : '/hero-video.mp4'
+  const posterSrc = portrait ? '/hero-poster-portrait.webp' : '/hero-poster.webp'
 
   useEffect(() => {
     let raf = 0
@@ -50,15 +65,16 @@ export function HeroSceneB({ progress }: HeroSceneBProps) {
       <div ref={zoomRef} className="absolute inset-0 will-change-transform">
         {useFallback ? (
           <img
-            src="/hero-poster.webp"
+            src={posterSrc}
             alt=""
             draggable={false}
             className="hero-b-drift hero-video h-full w-full"
           />
         ) : (
           <video
-            src="/hero-video.mp4"
-            poster="/hero-poster.webp"
+            key={videoSrc}
+            src={videoSrc}
+            poster={posterSrc}
             autoPlay
             muted
             loop

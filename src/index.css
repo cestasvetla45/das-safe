@@ -139,6 +139,7 @@ h3 {
 @media (orientation: portrait) {
   .hero-video {
     object-fit: contain;
+    object-position: 50% 42%;
   }
 }
 
